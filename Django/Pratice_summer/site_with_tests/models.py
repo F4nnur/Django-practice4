@@ -11,7 +11,10 @@ class Question(models.Model):
     var2 = models.CharField(max_length=255)
     var3 = models.CharField(max_length=255)
     var4 = models.CharField(max_length=255)
-    true_var = models.IntegerField()
+    var1_isTrue = models.BooleanField(default=False)
+    var2_isTrue = models.BooleanField(default=False)
+    var3_isTrue = models.BooleanField(default=False)
+    var4_isTrue = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Вопросы'
