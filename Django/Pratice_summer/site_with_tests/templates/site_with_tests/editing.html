@@ -1,10 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Реадактировние теста</title>
-</head>
-<body>
-<h1>Реадактировние теста</h1>
-</body>
-</html>
+{% extends 'site_with_tests/base.html' %}
+
+{% block tittle %}Формирование теста{% endblock %}
+
+{% block content %}
+<nav class="py-2 bg-light border-bottom">
+    <div class="container">
+        <header class="d-flex justify-content-evenly py-3">
+            <ul class="nav me-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link link-dark active" aria-current="page">
+                        Добавить вопрос
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link link-dark">
+                        Сформировать тест
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link link-dark">
+                        Статистика
+                    </a>
+                </li>
+            </ul>
+        </header>
+        <div class="g-5">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <p><label for="{{ form.quest.id_for_label }}" class="form.label">Вопрос</label>{{ form.quest }}</p>
+<!--                    <input type="text" class="form-control" id="quest">-->
+                </div>
+                <div class="mb-3">
+                    <p><label for="{{ form.var1.id_for_label }}" class="form.label">Первый ответ</label>{{ form.var1 }}</p>
+<!--                    <input type="text" class="form-control" id="var1">-->
+                </div>
+                <div class="mb-3">
+                    <p><label for="{{ form.var2.id_for_label }}" class="form-label">Второй ответ</label>{{ form.var2 }}</p>
+<!--                    <input type="text" class="form-control" id="var2">-->
+                </div>
+                <div class="mb-3">
+                    <p><label for="{{ form.var3.id_for_label }}" class="form-label">Третий ответ</label>{{ form.var3 }}</p>
+<!--                    <input type="text" class="form-control" id="var3">-->
+                </div>
+                <div class="mb-3">
+                    <p><label for="{{ form.var4.id_for_label }}" class="form-label">Четвертый ответ</label>{{ form.var4 }}</p>
+<!--                    <input type="text" class="form-control" id="var4">-->
+                </div>
+                <div class="text"> Выберете верный вариант (их может быть несколько)</div>
+                <div class="form-check form-check-inline">
+<!--                    <input class="form-check-input" type="checkbox" id="var1_isTrue" value="option1">-->
+                    <p><label class="form-check-label" for="{{ form.var1_isTrue.id_for_label }}">1</label>{{ form.var1_isTrue }}</p>
+                </div>
+                <div class="form-check form-check-inline">
+<!--                    <input class="form-check-input" type="checkbox" id="var2_isTrue" value="option2">-->
+                    <p><label class="form-check-label" for="{{ form.var2_isTrue.id_for_label }}">2</label>{{ form.var2_isTrue }}</p>
+                </div>
+                <div class="form-check form-check-inline">
+<!--                    <input class="form-check-input" type="checkbox" id="var3_isTrue" value="option1">-->
+                   <p><label class="form-check-label" for="{{ form.var3_isTrue.id_for_label }}">3</label>{{ form.var3_isTrue }}</p>
+                </div>
+                <div class="form-check form-check-inline">
+<!--                    <input class="form-check-input" type="checkbox" id="var4_isTrue" value="option2">-->
+                    <p><label class="form-check-label" for="{{ form.var4_isTrue.id_for_label }}">4</label>{{ form.var4_isTrue }}</p>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Сформировать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+{% endblock %}

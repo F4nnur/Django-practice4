@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import QuestionForm
 
 
 # Create your views here.
@@ -13,7 +14,17 @@ def configure_test(request):
 
 
 def editing_test(request):
-    return render(request, 'site_with_tests/editing.html')
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('home')
+            except:
+                form.add_error(None, 'Ошибка')
+    else:
+        form = QuestionForm()
+    return render(request, 'site_with_tests/editing.html', {'form': form})
 
 
 def all_tests(request):
@@ -30,4 +41,3 @@ def results_test(request):
 
 def statistics(request):
     return render(request, 'site_with_tests/statistics.html')
-
