@@ -9,19 +9,19 @@
   <label for="description" class="form-label">Описание</label>
   <input type="text" class="form-control" id="description">
 </div>
-<table border="1" width="100%" cellpadding="5" align="center" rules="groups">
+<table border="1" width="100%" cellpadding="5" align="center" rules="groups" style="border-color: #8598DB">
     <thead>
     <tr>
-        <th><b>id вопроса</b></th>
-        <th><b>Формулировка вопроса</b></th>
-        <th><b>Добавить</b></th>
+        <th><b style="color: #8598DB">id вопроса</b></th>
+        <th><b style="color: #8598DB">Формулировка вопроса</b></th>
+        <th><b style="color: #8598DB">Добавить</b></th>
     </tr>
     </thead>
     <tbody>
     {% for q in questions %}
     <tr>
-        <th>{{q.pk}}</th>
-        <th>{{q.quest}}</th>
+        <th class="fw-normal">{{q.pk}}</th>
+        <th class="fw-normal">{{q.quest}}</th>
         <th>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="addToTest">
