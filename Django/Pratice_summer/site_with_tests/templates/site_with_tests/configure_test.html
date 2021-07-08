@@ -1,6 +1,14 @@
 {% extends 'site_with_tests/base.html' %}
 
 {% block content %}
+<div class="mb-3">
+  <label for="name_of_test" class="form-label">Название теста</label>
+  <input type="text" class="form-control" id="name_of_test">
+</div>
+<div class="mb-3">
+  <label for="description" class="form-label">Описание</label>
+  <input type="text" class="form-control" id="description">
+</div>
 <table border="1" width="100%" cellpadding="5" align="center" rules="groups">
     <thead>
     <tr>
@@ -9,7 +17,8 @@
         <th><b>Добавить</b></th>
     </tr>
     </thead>
-    <tbody>{% for q in questions %}
+    <tbody>
+    {% for q in questions %}
     <tr>
         <th>{{q.pk}}</th>
         <th>{{q.quest}}</th>

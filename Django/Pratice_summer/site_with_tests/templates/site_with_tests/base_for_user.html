@@ -15,21 +15,21 @@
         <header class="d-flex justify-content-evenly py-3">
             <ul class="nav me-auto">
                 <li class="nav-item">
-                    <a href="{% url 'editing' %}" class="nav-link link-light" aria-current="page">
-                        Добавить вопрос
+                    <a href="{% url 'all_tests' %}" class="nav-link link-light" aria-current="page">
+                        Список тестов
                     </a>
                 </li>
+            </ul>
+            <ul class="nav">
                 <li class="nav-item">
-                    <a href="{% url 'configure' %}" class="nav-link link-light">
-                        Сформировать тест
+                    <a href="{% url 'statistics' %}" class="nav-link link-light">
+                        Статистика
                     </a>
                 </li>
             </ul>
         </header>
     </div>
 </nav>
-
-<div class="box1" style="margin-top: 10px"><h2 align="center" style="margin-bottom: 10px">{{title}}</h2></div>
 <div class="container">
     {% block content %}
     {% endblock %}

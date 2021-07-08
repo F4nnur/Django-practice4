@@ -7,7 +7,7 @@ from .models import *
 # Create your views here.
 
 def inndex(request):
-    return render(request, 'site_with_tests/index.html', {'title': "Добро пожаловать!"})
+    return render(request, 'site_with_tests/index.html', {'title': "О сайте"})
 
 
 def configure_test(request):
@@ -30,7 +30,8 @@ def editing_test(request):
 
 
 def all_tests(request):
-    return render(request, 'site_with_tests/all_tests.html', {'title': "Все тесты"})
+    tests = Test.objects.all()
+    return render(request, 'site_with_tests/all_tests.html', {'title': "Список тестов", 'tests': tests})
 
 
 def passing_test(request):

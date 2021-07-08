@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Страница с тестами</title>
-</head>
-<body>
-<h1>Страница с тестами</h1>
-</body>
-</html>
+{% extends 'site_with_tests/base_for_user.html' %}
+
+{% block content %}
+<h2 align="center" class="py2" style="margin-top: 10px">{{title}}</h2>
+<table border="1" width="100%" cellpadding="5" align="center" rules="groups">
+    <thead>
+    <tr>
+        <th><b>id теста</b></th>
+        <th><b>Название</b></th>
+        <th><b>Описание</b></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for t in tests %}
+    <tr>
+        <th>{{t.pk}}</th>
+        <th>{{t.name_of_test}}</th>
+        <th>{{t.description}}</th>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
