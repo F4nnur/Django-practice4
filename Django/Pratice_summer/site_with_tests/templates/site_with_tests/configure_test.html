@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Страница формирования теста</title>
-</head>
-<body>
-<h1>Страница формирования теста</h1>
-</body>
-</html>
+{% extends 'site_with_tests/base.html' %}
+
+{% block content %}
+<table border="1" width="100%" cellpadding="5" align="center" rules="groups">
+    <thead>
+    <tr>
+        <th><b>id вопроса</b></th>
+        <th><b>Формулировка вопроса</b></th>
+        <th><b>Добавить</b></th>
+    </tr>
+    </thead>
+    <tbody>{% for q in questions %}
+    <tr>
+        <th>{{q.pk}}</th>
+        <th>{{q.quest}}</th>
+        <th>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="addToTest">
+                <label class="form-check-label" for="addToTest"></label>
+            </div>
+        </th>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}
