@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import QuestionForm
+from .forms import QuestionForm, ConfigureForm
 from .models import *
 
 
@@ -12,7 +12,20 @@ def inndex(request):
 
 def configure_test(request):
     questions = Question.objects.filter(test=None)
-    return render(request, 'site_with_tests/configure_test.html', {'questions': questions, 'title': "Формирование вопроса"})
+    if request.method == 'POST':
+        form = ConfigureForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                print("ready to redirect")
+                return redirect('configure')
+            except:
+                print("form errror")
+                form.add_error(None, 'Ошибка')
+
+    else:
+        form = ConfigureForm()
+    return render(request, 'site_with_tests/configure_test.html', {'form': form, 'questions': questions, 'title': "Формирование вопроса"})
 
 
 def editing_test(request):
@@ -21,7 +34,7 @@ def editing_test(request):
         if form.is_valid():
             try:
                 form.save()
-                return redirect('home')
+                return redirect('editing')
             except:
                 form.add_error(None, 'Ошибка')
     else:

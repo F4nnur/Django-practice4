@@ -2,12 +2,19 @@
 
 {% block content %}
 <div class="mb-3">
-  <label for="name_of_test" class="form-label">Название теста</label>
-  <input type="text" class="form-control" id="name_of_test">
+    <form method="post">
+         {% csrf_token %}
+        <p><label for="{{ form.name_of_quest.id_for_label }}" class="form-label">Название теста</label>{{ form.name_of_quest }}</p>
+        <input type="text" class="form-control" id="name_of_test">
+        <button type="submit" class="btn btn-outline-primary">Добавить</button>
+    </form>
 </div>
 <div class="mb-3">
-  <label for="description" class="form-label">Описание</label>
-  <input type="text" class="form-control" id="description">
+    <form method="post">
+        {% csrf_token %}
+        <p><label for="{{ form.description.id_for_label }}" class="form-label">Описание</label> {{ form.description }}</p>
+<!--    <input type="text" class="form-control" id="description">-->
+    </form>
 </div>
 <table border="1" width="100%" cellpadding="5" align="center" rules="groups" style="border-color: #8598DB">
     <thead>
@@ -24,8 +31,10 @@
         <th class="fw-normal">{{q.quest}}</th>
         <th>
             <div class="form-check form-switch">
+                <form method="post">
                 <input class="form-check-input" type="checkbox" id="addToTest">
-                <label class="form-check-label" for="addToTest"></label>
+                <p><label class="form-check-label" for="{{ form.test.id_for_label }}"></label>{{ form.test }}</p>
+                </form>
             </div>
         </th>
     </tr>
@@ -33,6 +42,9 @@
     </tbody>
 </table>
 <div style="margin-top: 10px">
+    <form method="post">
+        {% csrf_token %}
     <button type="submit" class="btn btn-outline-primary">Сформировать</button>
+    </form>
 </div>
 {% endblock %}

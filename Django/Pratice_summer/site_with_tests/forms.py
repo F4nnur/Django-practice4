@@ -1,12 +1,12 @@
-from .models import Question
+from .models import Question, Test
 from django import forms
-from django.forms import ModelForm
 
 
-class QuestionForm(ModelForm):
+class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
-        fields = ['quest', 'var1', 'var2', 'var3', "var4", 'var1_isTrue','var2_isTrue', 'var3_isTrue', 'var4_isTrue']
+        fields = ['quest', 'var1', 'var2', 'var3', "var4", 'var1_isTrue', 'var2_isTrue', 'var3_isTrue',
+                  'var4_isTrue']
         widgets = {
             'quest': forms.TextInput(attrs={'class': "form-control", 'type': 'text'}),
             'var1': forms.TextInput(attrs={'class': "form-control", 'type': 'text'}),
@@ -17,4 +17,14 @@ class QuestionForm(ModelForm):
             'var2_isTrue': forms.CheckboxInput(attrs={'class': "form-check-input", 'type': 'checkbox'}),
             'var3_isTrue': forms.CheckboxInput(attrs={'class': "form-check-input", 'type': 'checkbox'}),
             'var4_isTrue': forms.CheckboxInput(attrs={'class': "form-check-input", 'type': 'checkbox'}),
+        }
+
+
+class ConfigureForm(forms.ModelForm):
+    class Meta:
+        model = Test
+        fields = ['name_of_test', 'description']
+        widgets = {
+            "name_of_test": forms.TextInput(attrs={'class': "form-control", 'type': 'text'}),
+            'description': forms.TextInput(attrs={'class': "form-control", 'type': 'text'})
         }
