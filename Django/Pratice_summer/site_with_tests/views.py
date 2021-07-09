@@ -1,10 +1,13 @@
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import QuestionForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+from .forms import *
 from .models import *
 
-
-# Create your views here.
 
 def inndex(request):
     return render(request, 'site_with_tests/index.html', {'title': "О сайте"})
@@ -12,7 +15,8 @@ def inndex(request):
 
 def configure_test(request):
     questions = Question.objects.filter(test=None)
-    return render(request, 'site_with_tests/configure_test.html', {'questions': questions, 'title': "Формирование вопроса"})
+    return render(request, 'site_with_tests/configure_test.html',
+                  {'questions': questions, 'title': "Формирование вопроса"})
 
 
 def editing_test(request):
@@ -44,3 +48,23 @@ def results_test(request):
 
 def statistics(request):
     return render(request, 'site_with_tests/statistics.html', {'title': "Статистика"})
+
+
+class RegisterUser(CreateView):
+    form_class = RegisterUserForm
+    template_name = 'site_with_tests/register.html'
+    success_url = reverse_lazy('login')
+
+
+class LoginUser(LoginView):
+    form_class = LoginUserForm
+    template_name = 'site_with_tests/login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('home')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')
+
