@@ -1,5 +1,33 @@
 {% extends 'site_with_tests/base.html' %}
 
 {% block content %}
-<h2 align="center" class="py2" style="margin-top: 10px">{{title}}</h2>
+<h2 align="center" class="py2" style="margin-top: 10px">{{title}} пользователя {{name}}</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Тест</th>
+      <th scope="col">Вопрос</th>
+      <th scope="col">Ответ</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in answers %}
+    <tr>
+        <th>{% for t in tests %}
+          {% if a.test == t %}
+          {{t.name_of_test}}
+          {% endif %}
+        {% endfor %}
+        </th>
+        <th>{% for q in questions %}
+          {% if a.quest == q %}
+          {{q.quest}}
+          {% endif %}
+        {% endfor %}</th>
+        <th>{{a.answer_of_user}}</th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

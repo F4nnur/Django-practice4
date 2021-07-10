@@ -47,7 +47,18 @@ def results_test(request):
 
 
 def statistics(request):
-    return render(request, 'site_with_tests/statistics.html', {'title': "Статистика"})
+    tests = Test.objects.all()
+    questions = Question.objects.all()
+    name = request.user.username
+    answers = Entering.objects.filter(user=request.user)
+    context = {
+        'title': "Статистика",
+        'answers': answers,
+        'questions': questions,
+        'name': name,
+        'tests': tests,
+    }
+    return render(request, 'site_with_tests/statistics.html', context)
 
 
 class RegisterUser(CreateView):
