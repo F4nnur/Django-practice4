@@ -16,7 +16,7 @@ def inndex(request):
 def configure_test(request):
     questions = Question.objects.filter(test=None)
     return render(request, 'site_with_tests/configure_test.html',
-                  {'questions': questions, 'title': "Формирование вопроса"})
+                  {'questions': questions, 'title': "Формирование теста"})
 
 
 def editing_test(request):
