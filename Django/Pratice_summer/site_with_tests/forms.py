@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-from .models import Question, Test
+from .models import Question, Test, Entering
 from django import forms
 
 
@@ -22,6 +22,18 @@ class QuestionForm(forms.ModelForm):
             'var3_isTrue': forms.CheckboxInput(attrs={'class': "form-check-input", 'type': 'checkbox'}),
             'var4_isTrue': forms.CheckboxInput(attrs={'class': "form-check-input", 'type': 'checkbox'}),
         }
+
+class PasForm(forms.ModelForm):
+    class Meta:
+            model = Entering
+            fields = ['test', 'user', 'answer_of_user1', 'answer_of_user2', 'answer_of_user3', "answer_of_user4"]
+            widgets = {
+            'answer_of_user1': forms.TextInput(attrs={'class': "form-check-input", 'type': 'checkbox'}),
+            'answer_of_user2': forms.TextInput(attrs={'class': "form-check-input", 'type': 'checkbox'}),
+            'answer_of_user3': forms.TextInput(attrs={'class': "form-check-input", 'type': 'checkbox'}),
+            'answer_of_user4': forms.TextInput(attrs={'class': "form-check-input", 'type': 'checkbox'}),
+            }
+
 
 
 class ConfigureForm(forms.ModelForm):

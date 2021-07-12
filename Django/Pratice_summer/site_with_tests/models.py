@@ -36,7 +36,12 @@ class Entering(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     test = models.ForeignKey('Test', on_delete=models.DO_NOTHING, related_name='testidforentering')
     quest = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='questionid')
-    answer_of_user = models.CharField(max_length=255)
+
+    answer_of_user1 = models.BooleanField(default=False)
+    answer_of_user2 = models.BooleanField(default=False)
+    answer_of_user3 = models.BooleanField(default=False)
+    answer_of_user4 = models.BooleanField(default=False)
+
 
     class Meta:
         verbose_name = 'Прохождение'

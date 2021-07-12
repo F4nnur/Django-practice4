@@ -1,7 +1,7 @@
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -38,12 +38,45 @@ def all_tests(request):
     return render(request, 'site_with_tests/all_tests.html', {'title': "Список тестов", 'tests': tests})
 
 
-def passing_test(request):
-    return render(request, 'site_with_tests/passing_test.html', {'title': "Прохождение теста"})
+def passing_test(request, test_id):
 
 
-def results_test(request):
-    return render(request, 'site_with_tests/results_test.html', {'title': "Результаты"})
+    test = get_object_or_404(Test, id=test_id)
+    questions = Question.objects.filter(test=test_id)
+
+    context = {
+        'user': test.user,
+        'title': "Прохождение ",
+        'test': test.name_of_test,
+        'questions': questions,
+        'test_id': test_id
+
+    }
+    if request.method == 'POST':
+        form = PasForm(request.POST, initial={'user': test.user, 'test': test.name_of_test})
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('home')
+            except:
+                form.add_error(None, 'Ошибка')
+    else:
+        form = PasForm()
+    return render(request, 'site_with_tests/passing_test.html', {'form': form, 'content': context})
+
+
+def results_test(request, test_id):
+    test = get_object_or_404(Test, id=test_id)
+    questions = Question.objects.filter(test=test_id)
+
+    context = {
+        'title': "Результаты теста ",
+        'test': test.name_of_test,
+        'questions': questions,
+        'test_id': test_id
+
+    }
+    return render(request, 'site_with_tests/results_test.html', context)
 
 
 def statistics(request):
