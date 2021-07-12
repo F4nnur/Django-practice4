@@ -13,7 +13,7 @@
     <tbody>
     {% for t in tests %}
     <tr>
-        <th><a href="{{ t.get_absolute_url }}">{{t.pk}}</a></th>
+        <th><a href="{% url 'main:passing_test' t.pk %}">{{t.pk}}</a></th>
         <th>{{t.name_of_test}}</th>
         <th>{{t.description}}</th>
     </tr>

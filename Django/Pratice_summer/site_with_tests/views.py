@@ -49,7 +49,7 @@ def passing_test(request, test_id):
         'title': "Прохождение ",
         'test': test.name_of_test,
         'questions': questions,
-        'test_id': test_id
+        'test_id': test.id
 
     }
     if request.method == 'POST':

@@ -14,23 +14,23 @@
     <div class="container">
         <header class="d-flex justify-content-evenly py-3">
             <ul class="nav me-auto">
-                <a href="{% url 'all_tests' %}" class="nav-link link-light" aria-current="page">
+                <a href="{% url 'main:all_tests' %}" class="nav-link link-light" aria-current="page">
                     Список тестов
                 </a>
-                <a href="{% url 'editing' %}" class="nav-link link-light" aria-current="page">
+                <a href="{% url 'main:editing' %}" class="nav-link link-light" aria-current="page">
                     Добавить вопрос
                 </a>
-                <a href="{% url 'configure' %}" class="nav-link link-light">
+                <a href="{% url 'main:configure' %}" class="nav-link link-light">
                     Сформировать тест
                 </a>
             </ul>
             <ul class="nav justify-content-end">
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'statistics' %}" class="nav-link link-light">Статистика</a>
-                <a href="{% url 'logout' %}" class="nav-link link-light">Выйти</a>
+                <a href="{% url 'main:statistics' %}" class="nav-link link-light">Статистика</a>
+                <a href="{% url 'main:logout' %}" class="nav-link link-light">Выйти</a>
                 {% else %}
-                <a href="{% url 'register' %}" class="nav-link link-light">Регистрация</a>
-                <a href="{% url 'login' %}" class="nav-link link-light">Вход</a>
+                <a href="{% url 'main:register' %}" class="nav-link link-light">Регистрация</a>
+                <a href="{% url 'main:login' %}" class="nav-link link-light">Вход</a>
                 {% endif %}
             </ul>
         </header>
