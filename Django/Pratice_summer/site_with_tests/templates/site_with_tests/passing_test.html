@@ -5,7 +5,8 @@
 
 <tbody>
 
-    <form method="post">
+    <form method="post" action="{% url 'main:passing_test' content.test_id%}">
+    {% csrf_token %}
     <div class="test">
         {% for q in content.questions %}
             <fieldset class="row mb-3">
@@ -33,7 +34,9 @@
 
     </div>
         </form>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 
     </tbody>
 
