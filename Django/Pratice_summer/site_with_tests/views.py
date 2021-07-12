@@ -97,7 +97,7 @@ def statistics(request):
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'site_with_tests/register.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('main:login')
 
 
 class LoginUser(LoginView):
@@ -105,10 +105,9 @@ class LoginUser(LoginView):
     template_name = 'site_with_tests/login.html'
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        return reverse_lazy('main:home')
 
 
 def logout_user(request):
     logout(request)
-    return redirect('login')
-
+    return redirect('main:login')

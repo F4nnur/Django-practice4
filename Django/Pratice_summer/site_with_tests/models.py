@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Question(models.Model):
     id = models.IntegerField(primary_key=True, unique=True, blank=False, null=False)
-    quest = models.TextField(blank=True,verbose_name='Вопрос')
+    quest = models.TextField(blank=True, verbose_name='Вопрос')
     # сделать test_id null=true и переделать наследование id Вопросы -> Тесты -> прохождение
     test = models.ForeignKey('Test', on_delete=models.DO_NOTHING, related_name='testidforquest', null=True)
     var1 = models.CharField(max_length=255, verbose_name='Первый ответ')
