@@ -4,28 +4,29 @@
 <h2 align="center" class="py2" style="margin-top: 10px">{{title}} пользователя {{name}}</h2>
 
 <table class="table">
-  <thead>
+    <thead>
     <tr>
-      <th scope="col">Тест</th>
-      <th scope="col">Вопрос</th>
+        <th scope="col">Тест</th>
+        <th scope="col">Вопрос</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     {% for a in answers %}
     <tr>
         <th>{% for t in tests %}
-          {% if a.test == t %}
-          {{t.name_of_test}}
-          {% endif %}
-        {% endfor %}
+            {% if a.test == t %}
+            <a href="{% url 'main:passing_test' t.id %}">{{t.name_of_test}}</a>
+            {% endif %}
+            {% endfor %}
         </th>
         <th>{% for q in questions %}
-          {% if a.quest == q %}
-          {{q.quest}}
-          {% endif %}
-        {% endfor %}</th>
+            {% if a.quest == q %}
+            {{q.quest}}
+            {% endif %}
+            {% endfor %}
+        </th>
     </tr>
     {% endfor %}
-  </tbody>
+    </tbody>
 </table>
 {% endblock %}
